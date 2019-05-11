@@ -5,6 +5,7 @@
 
 import ctypes
 import time
+import pynput
 
 SendInput = ctypes.windll.user32.SendInput
 
@@ -13,6 +14,13 @@ W = 0x11
 A = 0x1E
 S = 0x1F
 D = 0x20
+Z = 0x2C
+R = 0x13
+LEFT = 0xCB
+RIGHT = 0xCD
+UP = 0xC8
+DOWN = 0xD0
+SPACE = 0x39
 
 # C struct redefinitions
 PUL = ctypes.POINTER(ctypes.c_ulong)
@@ -53,26 +61,40 @@ class Input(ctypes.Structure):
 
 # Actuals Functions
 
-
 def PressKey(hexKeyCode):
-    extra = ctypes.c_ulong(0)
-    ii_ = Input_I()
-    ii_.ki = KeyBdInput(0, hexKeyCode, 0x0008, 0, ctypes.pointer(extra))
-    x = Input(ctypes.c_ulong(1), ii_)
-    ctypes.windll.user32.SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
-
+    extra = ctypes.culong(0)
+    ii = pynput._util.win32.INPUTunion()
+    ii.ki = pynput._util.win32.KEYBDINPUT(0, hexKeyCode, 0x0008, 0, ctypes.cast(ctypes.pointer(extra), ctypes.c_void_p))
+    x = pynput._util.win32.INPUT(ctypes.culong(1), ii)
+    SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
 def ReleaseKey(hexKeyCode):
-    extra = ctypes.c_ulong(0)
-    ii_ = Input_I()
-    ii_.ki = KeyBdInput(0, hexKeyCode, 0x0008 | 0x0002,
-                        0, ctypes.pointer(extra))
-    x = Input(ctypes.c_ulong(1), ii_)
-    ctypes.windll.user32.SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
+    extra = ctypes.culong(0)
+    ii = pynput._util.win32.INPUTunion()
+    ii.ki = pynput._util.win32.KEYBDINPUT(0, hexKeyCode, 0x0008 | 0x0002, 0, ctypes.cast(ctypes.pointer(extra), ctypes.c_void_p))
+    x = pynput._util.win32.INPUT(ctypes.culong(1), ii)
+    SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
 
-if __name__ == '__main__':
-    PressKey(0x11)
-    time.sleep(1)
-    ReleaseKey(0x11)
-    time.sleep(1)
+# def PressKey(hexKeyCode):
+#     extra = ctypes.c_ulong(0)
+#     ii_ = Input_I()
+#     ii_.ki = KeyBdInput(0, hexKeyCode, 0x0008, 0, ctypes.pointer(extra))
+#     x = Input(ctypes.c_ulong(1), ii_)
+#     ctypes.windll.user32.SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
+
+
+# def ReleaseKey(hexKeyCode):
+#     extra = ctypes.c_ulong(0)
+#     ii_ = Input_I()
+#     ii_.ki = KeyBdInput(0, hexKeyCode, 0x0008 | 0x0002,
+#                         0, ctypes.pointer(extra))
+#     x = Input(ctypes.c_ulong(1), ii_)
+#     ctypes.windll.user32.SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
+
+
+# if __name__ == '__main__':
+#     PressKey(0x11)
+#     time.sleep(1)
+#     ReleaseKey(0x11)
+#     time.sleep(1)

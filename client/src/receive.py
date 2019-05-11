@@ -12,7 +12,7 @@ import math
 from random import randint
 from queue import Queue
 from pynput.keyboard import Key, Controller
-from directkeys import PressKey, W, A, S, D
+from directkeys import PressKey, ReleaseKey, W, A, S, D, Z, R, LEFT, RIGHT, UP, DOWN, SPACE
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('localhost', 6789))
@@ -28,24 +28,30 @@ def getInput():
         recKey = dictionary.get("key")
         
         if recKey == "right":
-                keyboard.press(Key.right)
-                keyboard.release(Key.right)
+                KeyPress(RIGHT)
+                KeyRelease(RIGHT)
         elif recKey == "left":
-                keyboard.press(Key.left)
-                keyboard.release(Key.left)
+                KeyPress(LEFT)
+                KeyRelease(LEFT)
         elif recKey == "up":
-                keyboard.press(Key.up)
-                keyboard.release(Key.up)
+                KeyPress(UP)
+                KeyRelease(UP)
         elif recKey == "down":
-                keyboard.press(Key.down)
-                keyboard.release(Key.down)
+                KeyPress(DOWN)
+                KeyRelease(DOWN)
         elif recKey == "z":
-                keyboard.press('z')
-                keyboard.release('z')
+                KeyPress(Z)
+                KeyRelease(Z)
         elif recKey == "r":
-                keyboard.press('r')
-                keyboard.press('r')
-        elif recKey == "w":
-                PressKey(W)
+                KeyPress(R)
+                KeyRelease(R)
+        elif recKey == "space":
+                PressKey(SPACE)
+                ReleaseKey(SPACE)
+
+        # elif recKey == "w":
+        #         PressKey(W)
+        #         ReleaseKey(W)
+
 
 getInput()
