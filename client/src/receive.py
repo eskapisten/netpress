@@ -27,7 +27,6 @@ def getInput():
         dictionary = json.loads(decodeMsg)
         recKey = dictionary.get("key")
         
-        time.sleep(3)
         if recKey == "right":
                 keyboard.press(Key.right)
                 keyboard.release(Key.right)
