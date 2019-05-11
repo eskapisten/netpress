@@ -4,7 +4,6 @@ import json
 import threading
 import importlib
 import os
-import pygame
 import subprocess
 import sys
 from tkinter import *
