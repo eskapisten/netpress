@@ -16,10 +16,10 @@ S = 0x1F
 D = 0x20
 Z = 0x2C
 R = 0x13
-LEFT = 0xCB
-RIGHT = 0xCD
-UP = 0xC8
-DOWN = 0xD0
+LEFT = A
+RIGHT = D
+UP = W
+DOWN = S
 SPACE = 0x39
 
 # C struct redefinitions
@@ -62,17 +62,17 @@ class Input(ctypes.Structure):
 # Actuals Functions
 
 def PressKey(hexKeyCode):
-    extra = ctypes.culong(0)
-    ii = pynput._util.win32.INPUTunion()
-    ii.ki = pynput._util.win32.KEYBDINPUT(0, hexKeyCode, 0x0008, 0, ctypes.cast(ctypes.pointer(extra), ctypes.c_void_p))
-    x = pynput._util.win32.INPUT(ctypes.culong(1), ii)
+    extra = ctypes.c_ulong(0)
+    ii_ = pynput._util.win32.INPUT_union()
+    ii_.ki = pynput._util.win32.KEYBDINPUT(0, hexKeyCode, 0x0008, 0, ctypes.cast(ctypes.pointer(extra), ctypes.c_void_p))
+    x = pynput._util.win32.INPUT(ctypes.c_ulong(1), ii_)
     SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
 def ReleaseKey(hexKeyCode):
-    extra = ctypes.culong(0)
-    ii = pynput._util.win32.INPUTunion()
-    ii.ki = pynput._util.win32.KEYBDINPUT(0, hexKeyCode, 0x0008 | 0x0002, 0, ctypes.cast(ctypes.pointer(extra), ctypes.c_void_p))
-    x = pynput._util.win32.INPUT(ctypes.culong(1), ii)
+    extra = ctypes.c_ulong(0)
+    ii_ = pynput._util.win32.INPUT_union()
+    ii_.ki = pynput._util.win32.KEYBDINPUT(0, hexKeyCode, 0x0008 | 0x0002, 0, ctypes.cast(ctypes.pointer(extra), ctypes.c_void_p))
+    x = pynput._util.win32.INPUT(ctypes.c_ulong(1), ii_)
     SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
 
 
