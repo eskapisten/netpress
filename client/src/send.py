@@ -4,7 +4,6 @@ import json
 import threading
 import importlib
 import os
-import pygame
 import subprocess
 import sys
 from tkinter import *
@@ -14,7 +13,7 @@ from queue import Queue
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(('localhost', 6789))
+s.connect(('192.168.1.85', 6789))
 s.setblocking(False)
 
 WIDTH = 500
