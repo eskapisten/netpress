@@ -12,7 +12,7 @@ import math
 from random import randint
 from queue import Queue
 from pynput.keyboard import Key, Controller
-
+from directkeys import PressKey, W, A, S, D
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('localhost', 6789))
@@ -44,7 +44,8 @@ def getInput():
                 keyboard.release('z')
         elif recKey == "r":
                 keyboard.press('r')
-                keyboard.release('r')
-
+                keyboard.press('r')
+        elif recKey == "w":
+                PressKey(W)
 
 getInput()
