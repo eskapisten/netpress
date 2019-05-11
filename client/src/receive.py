@@ -27,23 +27,23 @@ def getInput():
         recKey = dictionary.get("key")
         
         if recKey == "right":
-                KeyPress(RIGHT)
-                KeyRelease(RIGHT)
+                PressKey(RIGHT)
+                ReleaseKey(RIGHT)
         elif recKey == "left":
-                KeyPress(LEFT)
-                KeyRelease(LEFT)
+                PressKey(LEFT)
+                ReleaseKey(LEFT)
         elif recKey == "up":
-                KeyPress(UP)
-                KeyRelease(UP)
+                PressKey(UP)
+                ReleaseKey(UP)
         elif recKey == "down":
-                KeyPress(DOWN)
-                KeyRelease(DOWN)
+                PressKey(DOWN)
+                ReleaseKey(DOWN)
         elif recKey == "z":
-                KeyPress(Z)
-                KeyRelease(Z)
+                PressKey(Z)
+                ReleaseKey(Z)
         elif recKey == "r":
-                KeyPress(R)
-                KeyRelease(R)
+                PressKey(R)
+                ReleaseKey(R)
         elif recKey == "space":
                 PressKey(SPACE)
                 ReleaseKey(SPACE)
