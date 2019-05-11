@@ -11,7 +11,7 @@ import math
 from random import randint
 from queue import Queue
 from pynput.keyboard import Key, Controller
-from directkeys import PressKey, ReleaseKey, W, A, S, D, Z, R, LEFT, RIGHT, UP, DOWN, SPACE
+from directkeys import PressKey, ReleaseKey, W, A, S, D, Z, R, LEFT, RIGHT, UP, DOWN, SPACE, ESCAPE
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('192.168.1.85', 6789))
@@ -54,6 +54,11 @@ def getInput():
                 PressKey(SPACE)
                 time.sleep(0.1)
                 ReleaseKey(SPACE)
+        elif recKey == "escape":
+                PressKey(ESCAPE)
+                time.sleep(0.1)
+                ReleaseKey(ESCAPE)
+
         #TEST
         # elif recKey == "w":
         #         PressKey(W)

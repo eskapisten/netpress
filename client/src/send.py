@@ -43,5 +43,6 @@ mainFrame.bind("<KeyPress-r>", lambda event: keyPressed("r"))
 # mainFrame.bind("<KeyPress-s>", lambda event: keyPressed("s"))
 # mainFrame.bind("<KeyPress-d>", lambda event: keyPressed("d"))
 mainFrame.bind("<space>", lambda event: keyPressed("space"))
+mainFrame.bind("<Escape>", lambda event: keyPressed("escape"))
 
 root.mainloop()

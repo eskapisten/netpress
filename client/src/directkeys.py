@@ -21,6 +21,7 @@ RIGHT = D
 UP = W
 DOWN = S
 SPACE = 0x39
+ESCAPE = 0x01
 
 # C struct redefinitions
 PUL = ctypes.POINTER(ctypes.c_ulong)
