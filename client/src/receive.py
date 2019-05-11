@@ -47,7 +47,7 @@ def getInput():
         elif recKey == "space":
                 PressKey(SPACE)
                 ReleaseKey(SPACE)
-
+        #TEST
         # elif recKey == "w":
         #         PressKey(W)
         #         ReleaseKey(W)
